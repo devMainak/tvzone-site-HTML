@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TV Details</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="index.html">
+        <h2>TVZone</h2>
+      </a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tvs.html">TV's</a></li>
+        <li><a href="tvBrands.html">TV Brands</a></li>
+        <li><a href="tvReport.html">Report</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+      <h1>TV Details</h1>
+    <section id="tvDetails">
+
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 TVZone. All rights reserved.</p>
+  </footer>
+
+
+
+  <script>
+
+    let televisions = [
+      {
+        id: "1",
+        name: "Smart LED TV",
+        model: "LED123",
+        detail: "A feature-rich Smart LED TV with high-definition display.",
+        manufacturer: "TechVision",
+        year: 2022,
+        screenType: "LED",
+        size: 55,
+        resolution: "4K",
+        price: 80000,
+      },
+      {
+        id: "2",
+        name: "Curved OLED TV",
+        model: "OLED456",
+        detail: "Immersive entertainment with a curved OLED display.",
+        manufacturer: "VisionX",
+        year: 2023,
+        screenType: "OLED",
+        size: 65,
+        resolution: "8K",
+        price: 120000,
+      },
+      {
+        id: "3",
+        name: "Ultra HD QLED TV",
+        model: "QLED789",
+        detail: "QLED technology for vibrant colors and superior clarity.",
+        manufacturer: "ColorTech",
+        year: 2021,
+        screenType: "QLED",
+        size: 75,
+        resolution: "4K",
+        price: 150000,
+      },
+    ];
+
+    //Get id from the URL
+    function getParameterById(id)
+      {
+        let url = new URL(window.location.href);
+        return url.searchParams.get(id);
+      }
+
+    let televisionId = getParameterById('id');
+
+    //Find the TV in the DB by id
+    let television;
+    for (let i = 0; i < televisions.length; i++)
+      {
+        if (televisionId == televisions[i].id)
+        {
+          television = televisions[i];
+        }
+      }
+
+    //Display the details in the view
+    let tvDetails = document.getElementById("tvDetails");
+
+    if(television)
+    {
+      tvDetails.innerHTML = `
+      <h2>${television.name}</h2>
+      <ul>
+        <li>Model: ${television.model}</li>
+        <li>Detail: ${television.detail}</li>
+        <li>Manufacturer: ${television.manufacturer}</li>
+        <li>Screen Type: ${television.screenType}</li>
+        <li>Size: ${television.size} inch</li>
+        <li>Resolution: ${television.resolution}</li>
+        <li>Year: ${television.year}</li>
+        <li>Price: Rs. ${television.price}</li>
+      </ul>
+      `
+    }
+    else
+    {
+      tvDetails.innerHTML = `<p>No Details Found!</p>`
+    }
+
+  </script>
+</body>
+
+</html>
